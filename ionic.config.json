@@ -1,0 +1,8 @@
+{
+  "name": "bapp2",
+  "app_id": "6b0ce890",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
