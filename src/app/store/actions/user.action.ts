@@ -1,5 +1,6 @@
 import { AppPayload } from '../app.response';
 import { Action } from '@ngrx/store';
+import { User } from "../../models/user.model";
 
 export const DO_LOGIN = "[AppPayload] DO_LOGIN";
 export const LOGIN_SUCCESS = "[AppPayload] LOGIN_SUCCESS";
@@ -15,7 +16,6 @@ export class doLogin implements Action {
 	// We define the payload property
 	//payload: { url_param: string, user: any };
 
-	type = DO_LOGIN;
 	constructor(url_param: string, user: any) {
 		this.payload = { url_param, user };
 	}
@@ -25,10 +25,10 @@ export class doLoginSuccess implements Action {
 
     // We define the payload property
     readonly type = LOGIN_SUCCESS;
-    payload: AppPayload;
+    payload: User;
 
-    
-    constructor(appPayload: AppPayload) {
+
+    constructor(appPayload: User) {
         this.payload = appPayload;
     }
 }
@@ -42,8 +42,8 @@ export class doLoginError implements Action {
     }*/
 }
 
-/* 
+/*
 * Type Action contains every possible action of an action file
-* This will be useful with typechecking later on ( in reducers ). 
+* This will be useful with typechecking later on ( in reducers ).
 */
 export type Action = doLogin | doLoginSuccess | doLoginError;

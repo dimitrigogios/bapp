@@ -1,5 +1,5 @@
 <ion-content>
-	<div class="logged-in" *ngIf="!user.isLoggedIn">
+	<div class="logged-in" *ngIf="!(currentUser | async)?.isLoggedIn">
 		<div class="login-box">
 			<ion-row class="logo-row">
 				<ion-col>
@@ -27,4 +27,7 @@
 			</ion-row>
 		</div>
 	</div>
+  <div class="logged-in" *ngIf="(currentUser | async)?.isLoggedIn">
+    <h1>We are logged in</h1>
+  </div>
 </ion-content>
