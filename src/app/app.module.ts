@@ -5,6 +5,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 //import { HttpModule } from '@angular/http';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { HttpClientModule } from "@angular/common/http";
 import { HomePage, BontiiApp } from './containers';
 import { UserService } from './services';
@@ -27,6 +28,9 @@ import { UserEffects } from './store/effects';
     EffectsModule.forRoot([UserEffects]),
     // Initialize the store with our reducers
     StoreModule.forRoot(reducers, { metaReducers }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+    }),
     IonicStorageModule.forRoot({name: '_bontii'})
   ],
   bootstrap: [IonicApp],

@@ -4,6 +4,9 @@ import { AppState } from '../../app.state';
 import { Store } from '@ngrx/store';
 import { LoadingController, Loading } from 'ionic-angular';
 import * as fromUser from '../../store/actions/user.action';
+import { User } from "../../models/user.model";
+import { map } from "rxjs/operators";
+import { State } from "../../store/reducers";
 
 @Component({
 	selector: 'home',
@@ -14,7 +17,8 @@ export class HomePage {
 		username: '',
 		password: ''
 	};
-	loading: boolean;
+	loading: Observable<boolean>;
+	currentUser: any;//Observable<User>;
 	//dogImgUrl$: Observable<string>
 	//isLoading$: Observable<boolean>
 	// Used to display the loader
@@ -37,7 +41,7 @@ export class HomePage {
 		//console.log(this._store.dispatch(new loginActions.getState()))
 		//console.log(_store.select(appState => appState));
 		this.loading = _store.select(state => state.heartbeat.loading);
-		console.log(this.loading);
+		this.currentUser = _store.select(state => state.heartbeat.user);
 	}
 
 	/*

@@ -3,7 +3,7 @@ import { filter, map, switchMap, withLatestFrom } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Action } from '@ngrx/store';
-import { Actions, Effect, toPayload } from '@ngrx/effects';
+import { Actions, Effect } from '@ngrx/effects';
 import { UserService } from '../../services/user.service'
 import { DO_LOGIN, LOGIN_SUCCESS, LOGIN_ERROR, doLoginSuccess, doLoginError } from '../../store/actions/user.action'
 
@@ -31,14 +31,15 @@ export class UserEffects {
 
             }),
             map((res) => {
+                console.log(res);
                 res.isLoggedIn = true;
-                new doLoginSuccess(res);
+                return new doLoginSuccess(res);
                 //console.log(res);
             })
         );
         /*
         map(action => action.payload), map(() => {
-            
+
                 // Request succeeed, we dispatch fetchRandomDogSuccess action with the retrieved imgUrl
                 .map(imgUrl => new doLoginSuccess(imgUrl))
                 // Something went wrong with the request

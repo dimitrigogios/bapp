@@ -6,7 +6,7 @@ import { AppState } from '../../app.state';
 
 let checkStorage = function() {
     console.log('sddd');
-    return {};
+    return ({} as User);
 }
 
 /*
@@ -23,7 +23,7 @@ export function reducer(state = initialState, action: fromUser.Action): AppState
 
     /*
      * Every action has an action.type property
-     */ 
+     */
     switch (action.type) {
 
         case fromUser.DO_LOGIN: {
@@ -43,6 +43,7 @@ export function reducer(state = initialState, action: fromUser.Action): AppState
                 // ...state : copy every properties from state into the new object
                 // We have to do this because the state is Immutable.
                 ...state,
+                user: action.payload,
                 loading: true // Request is beeing processed
             }
         }
@@ -54,7 +55,5 @@ export function reducer(state = initialState, action: fromUser.Action): AppState
         default:
             return state;
     }
-
-    return state;
 
 }
